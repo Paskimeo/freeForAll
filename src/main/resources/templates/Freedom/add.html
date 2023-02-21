@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <th:block th:replace="fragments/risorse :: risorse-head"></th:block>
+    <title>Freedom</title>  
+</head>
+ <body style= " background-color:black; color:aliceblue;">
+  <div    th:replace="fragments/navbar :: navbar('moreStuff')"></div>
+  
+  
+ <h1th:text="${NuovoOggetto.id != null} ? 'EditNuovoOggetto' : 'New NuovoOggetto'"></h1>
+
+
+
+
+
+ <div class="flex-container  text-center rounded-3" style=" text-align:center; margin-left:20%; margin-right:20%;   background-color:aliceblue; ">
+<form
+  			id="form-Subs"
+  			th:object="${NuovoOggetto}"
+  			th:action="@{/Freedom/moreStuff/save}"
+  			method="POST"
+  		>
+  		
+  		
+  		
+  		
+ 
+ <input type="hidden" th:field="*{id}">
+  	<div class="form-group">
+    <label for="PrimoInput">Generico</label>
+    <input type="text" class="form-control" id="PrimoInput" placeholder="Inserisci Generico" th:field="*{generico}" th:errorClass="is-invalid">
+ 
+ <div th:if="${#fields.hasErrors('generico')}" class="invalid-feedback">
+     	<div th:each="err : ${#fields.errors('generico')}" th:text="${err}"> </div>
+    </div>
+ 
+ 
+  </div>
+  		
+  	
+  	
+  	
+  	
+  		<div class="form-group">
+    <label for="SecondoInput">Nickname</label>
+    <input type="text" class="form-control" id="SecondoInput"  placeholder="Inserisci nickname" th:field="*{nickname}" th:errorClass="is-invalid">
+ 
+    <div th:if="${#fields.hasErrors('nickname')}" class="invalid-feedback">
+     	<div th:each="err : ${#fields.errors('nickname')}" th:text="${err}"> </div>
+    </div>
+
+  </div>
+  		
+  		
+  		<div class="form-group">
+    <label for="terzoInput">Password</label>
+    <input type="text" class="form-control" id="terzoInput"  placeholder="Inserisci password" th:field="*{password}" th:errorClass="is-invalid">
+ 
+ <div th:if="${#fields.hasErrors('password')}" class="invalid-feedback">
+     	<div th:each="err : ${#fields.errors('password')}" th:text="${err}"> </div>
+    </div>
+ 
+  </div>
+  		
+  			
+
+  		<div style=" text-align:center; margin-top:5%;">
+  		<button type="submit" class="btn btn-primary rounded-3">Save</button>
+  		 </div>
+
+  </div>
+</form>
